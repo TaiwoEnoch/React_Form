@@ -1,76 +1,86 @@
-import { useState } from "react";
-import '../index.css'
+/* eslint-disable react/jsx-one-expression-per-line */
+/* eslint-disable jsx-a11y/label-has-associated-control */
+import { useState } from 'react';
+import '../index.css';
+
 const Form = () => {
   const [state, setState] = useState({
-    fname: "",
-    lname: "",
-    message: "",
-    carBrand: "",
+    fname: '',
+    lname: '',
+    message: '',
+    carBrand: '',
     isChecked: false,
-    gender: "",
-    price: 0
+    gender: '',
+    price: 0,
   });
 
   const handleChange = (e) => {
-    const value = e.target.type === "checked" ? e.target.checked : e.target.value;
+    const value = e.target.type === 'checked' ? e.target.checked : e.target.value;
     setState((state) => ({
       ...state,
-      [e.target.name]: value
+      [e.target.name]: value,
     }));
   };
 
-  const carBrand = ["Mercedes", "BMW", "Maserati", "Infinity", "Audi", "Matrix", "Land Cruiser", "Range Rover", "Rolls-Royce Boat Tail", "Bugatti La Voiture Noire", "Bugatti Centodieci", "Bugatti Divo", "Bugatti Bolide", "Pagani Huayra Roadster BC", "Bugatti Chiron Super Sport 300+", "Bugatti Chiron Pur Sport", "Lamborghini Sian Roadster", "Aston Martin Valkyrie AMR Pro"]
+  const carBrand = ['Mercedes', 'BMW', 'Maserati', 'Infinity', 'Audi', 'Matrix', 'Land Cruiser', 'Range Rover', 'Rolls-Royce Boat Tail', 'Bugatti La Voiture Noire', 'Bugatti Centodieci', 'Bugatti Divo', 'Bugatti Bolide', 'Pagani Huayra Roadster BC', 'Bugatti Chiron Super Sport 300+', 'Bugatti Chiron Pur Sport', 'Lamborghini Sian Roadster', 'Aston Martin Valkyrie AMR Pro'];
 
   const carBrandOptions = carBrand.map((carBrand, key) => (
+    // eslint-disable-next-line react/no-array-index-key
     <option value={carBrand} key={key}>
       {carBrand}
     </option>
   ));
 
+  // eslint-disable-next-line no-unused-vars
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(state)
-  }
+  };
 
   return (
     <div className="form-div">
       <h1>Controlled Form</h1>
       <form onSubmit={handleChange} className="my-form">
         <label htmlFor="">
-          First Name:{" "}
+          First Name:{' '}
           <input
-            name="fname" type="text" value={state.fname} onChange={handleChange} 
+            name="fname"
+            type="text"
+            value={state.fname}
+            onChange={handleChange}
           />
         </label>
         <label htmlFor="">
-          Last Name:{" "}
-          <input 
-            name="lname" type="text" value={state.lname} onChange={handleChange} 
+          Last Name:{' '}
+          <input
+            name="lname"
+            type="text"
+            value={state.lname}
+            onChange={handleChange}
           />
         </label>
         <label htmlFor="">
           Your Message:
-          <textarea 
+          <textarea
             name="message"
             value={state.message}
             onChange={handleChange}
-            />
+          />
         </label>
         <label htmlFor="">
           car brand:
-          <select 
+          <select
             name="carBrand"
             value={state.carBrand}
             onChange={handleChange}
           >
-            <option value={""} disabled>
+            <option value="" disabled>
               --Pick a car brand--
             </option>
-              {carBrandOptions}
+            {carBrandOptions}
           </select>
         </label>
         <label htmlFor="">
-          <input 
+          <input
             type="checkbox"
             name="isChecked"
             checked={state.isChecked}
@@ -83,9 +93,9 @@ const Form = () => {
             type="radio"
             name="gender"
             value="male"
-            checked={state.gender === "male"}
+            checked={state.gender === 'male'}
             onChange={handleChange}
-          />{" "}
+          />{' '}
           Male
         </label>
         <label htmlFor="">
@@ -93,12 +103,12 @@ const Form = () => {
             type="radio"
             name="gender"
             value="female"
-            checked={state.gender === "female"}
+            checked={state.gender === 'female'}
             onChange={handleChange}
-          />{" "}
+          />{' '}
           Female
         </label>
-        <label htmlFor="">
+        <label>
           Price (between 0 and 100):
           <input
             type="range"
@@ -109,14 +119,14 @@ const Form = () => {
             onChange={handleChange}
           />
         </label>
-        <button className="btn">Submit</button>
+        <button type="submit" className="btn">Submit</button>
       </form>
       <h5>
         Name: {state.fname} {state.lname}
       </h5>
       <p>Message: {state.message}</p>
       <h5>Favorite car brand: {state.carBrand}</h5>
-      <h5>Is It checked? : {state.isChecked ? "Yes" : "No"}</h5>
+      <h5>Is It checked? : {state.isChecked ? 'Yes' : 'No'}</h5>
       <h5>Gender : {state.gender}</h5>
       <h5>Price : ${state.price}</h5>
     </div>
